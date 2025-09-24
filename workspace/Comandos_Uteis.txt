@@ -9,3 +9,15 @@ ros2 launch turtlebot3_gazebo empty_world.launch.py x_pose:=-8
 
 Abrir um mapa:
 bash worlds/room_with_obstacles.sh
+
+Casa do TurtleBot:
+ros2 launch turtlebot3_gazebo turtlebot3_house.launch.py
+
+Cartographer:
+ros2 launch turtlebot3_cartographer cartographer.launch.py
+
+Teleop:
+ros2 run turtlebot3_teleop teleop_keyboard
+
+Salvar o Mapa:
+ros2 run nav2_map_server map_saver_cli

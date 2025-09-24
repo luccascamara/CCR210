@@ -1,0 +1,11 @@
+Caminho Workspace:
+home/robot/workspace
+
+"Ativar as ferramentas ROS" no terminal:
+source /opt/ros/humble/setup.bash
+
+Abrir o Gazebo:
+ros2 launch turtlebot3_gazebo empty_world.launch.py x_pose:=-8
+
+Abrir um mapa:
+bash worlds/room_with_obstacles.sh

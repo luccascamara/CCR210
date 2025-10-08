@@ -28,19 +28,23 @@ class RobotControl(Node):
         self.integral = 0.0
         self.old_error = 0.0
 
-    def __del__(self):
-        self.get_logger().info('Finalizando o nó! Tchau, tchau...')
+    # Método de finalização removido, utilize destroy_node() explicitamente
 
     def run(self):
         rclpy.spin(self)
 
     def laser_callback(self, msg):
+        # Definir constantes para os índices do LaserScan
+        IDX_DIREITA_INICIO = 270
+        IDX_DIREITA_FIM = 300
+        IDX_FRENTE = 0
 
-        self.distancia_direita = min(msg.ranges[270:300])
-        self.distancia_frente = msg.ranges[0]
+        self.distancia_direita = min(msg.ranges[IDX_DIREITA_INICIO:IDX_DIREITA_FIM])
+        self.distancia_frente = msg.ranges[IDX_FRENTE]
 
-        self.get_logger().debug(f'distancia_direita: {self.distancia_direita}')
-        self.get_logger().debug(f'distancia_frente: {self.distancia_frente}')
+        # Log apenas se necessário
+        # self.get_logger().debug(f'distancia_direita: {self.distancia_direita}')
+        # self.get_logger().debug(f'distancia_frente: {self.distancia_frente}')
 
         self.process()
 
@@ -56,20 +60,23 @@ class RobotControl(Node):
 
     def process(self):    
         # implementar pid
+        INTEGRAL_LIMIT = 10.0
 
-        if (self.distancia_frente < 0.5):
-            self.pub_vel(lx=0.0, az=1.5)
+        if self.distancia_frente < 0.5:
+            self.vel(lx=0.0, az=1.5)
         else:
             self.error = self.distancia_objetivo - self.distancia_direita
-            self.integral = self.integral + self.error
+            self.integral += self.error
+            # Limitar integral para evitar windup
+            self.integral = max(min(self.integral, INTEGRAL_LIMIT), -INTEGRAL_LIMIT)
             self.dif_erro = self.error - self.old_error
             self.old_error = self.error
 
             power = self.p_gain*self.error + self.i_gain*self.integral + self.d_gain*self.dif_erro
-            self.get_logger().info(f'power: {power}')
+            # Log apenas se necessário
+            # self.get_logger().info(f'power: {power}')
 
             self.vel(lx=0.2, az=power) # valores iniciais que precisam ser ajustados
-        pass
 
 
 

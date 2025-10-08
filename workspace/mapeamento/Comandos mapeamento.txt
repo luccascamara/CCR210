@@ -1,0 +1,16 @@
+
+1º terminal
+source /opt/ros/humble/setup.bash
+ros2 launch turtlebot3_gazebo turtlebot3_house.launch.py
+
+2º terminal
+source /opt/ros/humble/setup.bash
+ros2 launch turtlebot3_cartographer cartographer.launch.py
+
+3º terminal
+source /opt/ros/humble/setup.bash
+ros2 run turtlebot3_teleop teleop_keyboard
+
+4º terminal (para salvar o mapa)
+source /opt/ros/humble/setup.bash
+ros2 run nav2_map_server map_saver_cli

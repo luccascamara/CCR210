@@ -11,8 +11,8 @@ matrix = 1.0 * (matrix > 250)
 plt.imshow(matrix, interpolation='nearest', cmap='gray')
 plt.show()
 
-x_inicio = 120
-y_inicio = 30
+x_inicio = 180
+y_inicio = 50
 
 x_final = 260
 y_final = 200

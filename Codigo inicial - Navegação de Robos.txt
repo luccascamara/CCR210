@@ -1,0 +1,26 @@
+1° passo - baixar o visual studio code no PC
+
+2° passo - baixar o docker desktop
+
+3° passo - entrar no GitHub do Fagner, encontrar a pasta aprendendo_ros2 e apertar o botão "fork"
+
+4° passo - no visual studio code baixado no pc, vincular a sua conta do GitHub. 
+
+5° passo - no vs code baixado no pc, abrir o arquivo docker-compose.yml e rodar no terminal os comandos cd .devcontainer no docker-compose.yml
+
+6° passo - abrir o aplicativo docker e verificar se o docker esta sendo executado
+
+7° passo - abrir o http://localhost:3001/?folder=/home/robot/workspace e http://localhost:3000/vnc.html?autoconnect=1&resize=remote no google chrome 
+
+8° passo - no localhost 3000 (VS Code do chrome), abrir dois terminais (ctrl shift c) e rodar os em ambos os terminais os comandos source /opt/ros/humble/setup.bash
+
+9° passo - ao abrir localhost 3000 (VS Code do chrome) e colocar o caminho /home/robot/workspace/
+
+10° passo - no primeiro terminal, executar o comando ros2 launch turtlebot3_gazebo empty_world.launch.py para spawnar o turtle robot e abrir o localhost3001
+
+11° passo - no segundo terminal, executar o comando ros2 run gazebo_ros spawn_entity.py -file k404.sdf -entity k404 -y -0.5 -x 4.5 -Y 1.5708 para spawnar a arena K404.
+
+12° passo - para rodar o código e o robô andar, executar o comando python3 nome_do_arquivo.py no mesmo terminal que spawnou a arena 
+
+13° passo - para parar o robô no localhost3000, é necessário apertar ctrl R
+
